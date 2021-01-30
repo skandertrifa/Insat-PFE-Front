@@ -5,7 +5,12 @@ import { NgModule } from '@angular/core';
 
 const routes: Routes = [{
   path: '',
-  component: ConsulterPFEsComponent,
+  children:[
+  {
+    path: '',
+    component: ConsulterPFEsComponent,
+  }
+]
   
 }];
 

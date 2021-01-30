@@ -23,9 +23,9 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
     NbMenuModule,
     DashboardModule,
     MiscellaneousModule,
-    CataloguePFEsModule,
+    /*CataloguePFEsModule,
     ConsulterPFEsModule,
-    DeposerPFEModule,
+    DeposerPFEModule,*/
   ],
   declarations: [
     MainComponent,
