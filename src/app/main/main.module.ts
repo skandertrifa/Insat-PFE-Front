@@ -1,3 +1,4 @@
+import { PfeCardComponent } from './consulter-pfes/pfe-card/pfe-card.component';
 
 
 
@@ -24,7 +25,7 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
     MiscellaneousModule,
     CataloguePFEsModule,
     ConsulterPFEsModule,
-    DeposerPFEModule
+    DeposerPFEModule,
   ],
   declarations: [
     MainComponent,
