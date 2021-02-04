@@ -8,12 +8,14 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
+import { LoginGuard } from './guards/login.guard';
 
 
 
 export const routes: Routes = [
   {
     path: 'main',
+    canActivate: [LoginGuard],
     loadChildren: () => import('./main/main.module')
       .then(m => m.MainModule),
   },
@@ -58,8 +60,8 @@ export const routes: Routes = [
       },
     ],
   },*/
-  //{ path: '', redirectTo: 'main', pathMatch: 'full' },
-  //{ path: '**', redirectTo: 'main' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: '**', redirectTo: 'main' },
 ];
 
 const config: ExtraOptions = {
