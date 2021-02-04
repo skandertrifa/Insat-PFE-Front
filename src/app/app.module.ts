@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.
@@ -21,10 +22,12 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    CommonModule,
+    //BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,

@@ -23,6 +23,17 @@ export const routes: Routes = [
     children: [
       {
         path: '',
+        loadChildren: () => import('./auth/auth.module')
+        .then(m => m.AuthModule),
+      }
+    ]
+  },
+  /*{
+    path: 'auth',
+    component: NbAuthComponent,
+    children: [
+      {
+        path: '',
         component: NbLoginComponent,
       },
       {
@@ -46,9 +57,9 @@ export const routes: Routes = [
         component: NbResetPasswordComponent,
       },
     ],
-  },
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: '**', redirectTo: 'main' },
+  },*/
+  //{ path: '', redirectTo: 'main', pathMatch: 'full' },
+  //{ path: '**', redirectTo: 'main' },
 ];
 
 const config: ExtraOptions = {

@@ -13,11 +13,6 @@ const routes: Routes = [{
   path: '',
   component: MainComponent,
   children: [
-    /*{
-      path: 'catalogue-pfes',
-      component: CataloguePFEsComponent,
-    },*/
-    
     {
       path: 'consulter-pfes',
       loadChildren: () => import('./consulter-pfes/consulter-pfes.module')
@@ -39,6 +34,7 @@ const routes: Routes = [{
       loadChildren: () => import('./profile/profile.module')
         .then(m => m.ProfileModule),
     },
+    
     {
       path: '',
       redirectTo: 'catalogue-pfes',
