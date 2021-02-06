@@ -1,1 +1,78 @@
-<p>deposer-pfe works!</p>
+<div class="form-style-5">
+  <form #addSujet="ngForm">
+
+  <fieldset>
+  <legend><span class="number">1</span>Sujet :</legend>
+  <input
+  type="text"
+  id="titre"
+  class="form-control"
+  name="titre"
+  placeholder="Titre"
+  ngModel
+  required
+  #sujetTitre="ngModel"
+  >
+  <textarea
+  name="description"
+  placeholder="Description"
+  class="form-control"
+  id="Description"
+  ngModel
+  required
+  #sujetDescription="ngModel"
+
+  ></textarea>
+  </fieldset>
+
+  <fieldset>
+  <legend><span class="number">2</span> Encadrant:</legend>
+
+  <select id="selectedEnseignant" [(ngModel)]="selectedEnseignant"
+    name="selectedEnseignant" (change)="updateEnseignant()">
+      <option *ngFor="let enseignant of enseignants" [ngValue]="enseignant">
+        {{enseignant.userDetails.nom}} {{enseignant.userDetails.prenom}}
+      </option>
+
+    </select>
+  <!-- <select id="job" name="field4">
+
+    <optgroup label="Outdoors">
+      <option value="football">Football</option>
+      <option value="swimming">Swimming</option>
+      <option value="fishing">Fishing</option>
+      <option value="climbing">Climbing</option>
+      <option value="cycling">Cycling</option>
+      <option value="other_outdoor">Other</option>
+    </optgroup>
+  </select> -->
+  </fieldset>
+
+  <legend><span class="number">2</span>Fiche de proposition</legend>
+  <input
+    type="file"
+    class="form-control-file"
+    id="fichePropositionFile"
+    name="ficheProposition"
+    ngModel
+    required
+    #fileInput="ngModel"
+    (change)="onFileChange($event)"
+  />
+  <div
+    *ngIf="fileInput.invalid && fileInput.dirty"
+    class="alert alert-danger"
+  >
+  Fiche de proposition nécessaire.
+  </div>
+
+  <button
+  type="button"
+  class="btn btn-primary"
+  [disabled]="addSujet.invalid"
+  (click)="createSujet(addSujet)"
+    >
+  Envoyer
+</button>
+</form>
+</div>

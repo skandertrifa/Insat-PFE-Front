@@ -20,6 +20,8 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { FormsModule as ngFormsModule } from '@angular/forms';
 
+
+
 @NgModule({
   imports: [
     ThemeModule,
@@ -43,5 +45,10 @@ import { FormsModule as ngFormsModule } from '@angular/forms';
     FormLayoutsComponent,
     DatepickerComponent,
   ],
+  exports:[    FormsComponent,
+    ButtonsComponent,
+    FormInputsComponent,
+    FormLayoutsComponent,
+    DatepickerComponent,]
 })
 export class FormsModule { }
