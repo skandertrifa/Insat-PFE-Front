@@ -4,8 +4,9 @@ import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServ
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { AuthService } from '../../../auth/services/auth.service';
+import { Subject, Observable } from 'rxjs';
+import { RippleService } from '../../../@core/utils/ripple.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   prenom: '';
 
   private destroy$: Subject<void> = new Subject<void>();
+  public readonly materialTheme$: Observable<boolean>;
   userPictureOnly: boolean = false;
   user: any;
 
@@ -41,21 +43,36 @@ export class HeaderComponent implements OnInit, OnDestroy {
       value: 'corporate',
       name: 'Corporate',
     },
+    {
+      value: 'material-light',
+      name: 'Material Light',
+    },
+    {
+      value: 'material-dark',
+      name: 'Material Dark',
+    },
   ];
 
   currentTheme = 'default';
 
   userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
 
-  constructor(
-              private authService: AuthService,
+  public constructor(
+    private authService: AuthService,
               private router: Router,
-              private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private userService: UserData,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+    private sidebarService: NbSidebarService,
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private userService: UserData,
+    private layoutService: LayoutService,
+    private breakpointService: NbMediaBreakpointsService,
+    private rippleService: RippleService,
+  ) {
+    this.materialTheme$ = this.themeService.onThemeChange()
+      .pipe(map(theme => {
+        const themeName: string = theme?.name || '';
+        return themeName.startsWith('material');
+      }));
   }
 
   ngOnInit() {
@@ -66,7 +83,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.email = email;
     this.nom = nom;
     this.prenom = prenom;
-
 
     this.currentTheme = this.themeService.currentTheme;
 
@@ -87,7 +103,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         map(({ name }) => name),
         takeUntil(this.destroy$),
       )
-      .subscribe(themeName => this.currentTheme = themeName);
+      .subscribe(themeName => {
+        this.currentTheme = themeName;
+        this.rippleService.toggle(themeName?.startsWith('material'));
+      });
   }
 
   ngOnDestroy() {
@@ -133,3 +152,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   }
 }
+
+
