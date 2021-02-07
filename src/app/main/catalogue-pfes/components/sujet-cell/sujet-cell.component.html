@@ -1,0 +1,10 @@
+<ng-template #popContent>
+   {{value}}
+  </ng-template>
+  <button
+  type="button" class="btn btn-outline-secondary" 
+  [autoClose]="true" 
+  [ngbPopover]="popContent"           
+  #popover3="ngbPopover">
+    Description
+  </button>

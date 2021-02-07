@@ -38,3 +38,6 @@
   @include nb-overrides();
   @include material-overrides();
 };
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
