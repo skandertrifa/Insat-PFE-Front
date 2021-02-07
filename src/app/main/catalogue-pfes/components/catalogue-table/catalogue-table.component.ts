@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { SujetCellComponent } from '../sujet-cell/sujet-cell.component';
 import { RapportCellComponent } from '../rapport-cell/rapport-cell.component';
+import { Catalogue } from '../../models/catalogue';
 
 
 
@@ -13,6 +14,8 @@ import { RapportCellComponent } from '../rapport-cell/rapport-cell.component';
   styleUrls: ['./catalogue-table.component.scss']
 })
 export class CatalogueTableComponent {
+
+  catalogue : Catalogue[] =[]
 
   settings = {
     edit: {
@@ -54,6 +57,7 @@ export class CatalogueTableComponent {
         title: 'Rapport',
         type: 'custom',
         renderComponent: RapportCellComponent,
+        filter : null
         
       },
       
@@ -63,17 +67,27 @@ export class CatalogueTableComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  processData(data){
+  processData(data : Catalogue[]){
     for (let row of data){
       row["etudiant"]=`${row["nomEtudiant"]} ${row["prenomEtudiant"]}`
       row["encadrant"]=`${row["nomEncadrant"]} ${row["prenomEncadrant"]}`
     }
+    console.log("last form data : ",data)
     return data
 
   }
+  loadCatalogue(){
+    this.service.getData().subscribe(
+      (response)=>{
+        console.log("real catalogue : ",response)
+        this.catalogue=response
+        this.source.load(this.processData(response));
+      }
+    )
+  }
   constructor(private service: CatalogueService) {
-    const data = this.service.getData();
-    this.source.load(this.processData(data));
+    this.loadCatalogue()
+    
   }
 
   
