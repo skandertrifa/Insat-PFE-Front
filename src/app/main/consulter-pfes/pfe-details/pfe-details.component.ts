@@ -1,3 +1,4 @@
+import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pfe-details.component.scss']
 })
 export class PfeDetailsComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
 
+  @ViewChild('item', { static: true }) accordion;
+
+  toggle() {
+    this.accordion.toggle();
+  }
 }

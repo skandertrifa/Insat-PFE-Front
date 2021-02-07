@@ -17,6 +17,10 @@ const routes: Routes = [{
   {
     path: 'details/:id',
     component: PfeDetailsComponent,
+  },
+  {
+    path: 'test',
+    component:PfeDetailsComponent,
   }
 ]
 
