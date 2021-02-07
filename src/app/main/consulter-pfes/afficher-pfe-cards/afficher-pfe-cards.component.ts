@@ -16,7 +16,7 @@ export class AfficherPfeCardsComponent implements OnInit {
 
   role :string = '';
   idUser : number ;
-  soutenances = [];
+  sujets = [];
   ngOnInit(): void {
     const token = localStorage.getItem('token')
     const payload = this.authService.getDecodedAccessToken(token);
@@ -29,15 +29,15 @@ export class AfficherPfeCardsComponent implements OnInit {
       this.idUser = payload.teacherDetails.id
     }
     console.log(this.idUser)
-    this.loadSoutenances()
+    this.loadSujets()
     }
 
-    async loadSoutenances(){
+    async loadSujets(){
       if (this.role=='user'){
-        this.pfeService.getSoutenanceOfStudent(+this.idUser).subscribe(
+        this.pfeService.getSujetOfStudent(+this.idUser).subscribe(
           (response)=>{
-            this.soutenances.push(response)
-            console.log(this.soutenances)
+            this.sujets = response
+
           },
           (error)=>{
             console.log('error sout student')
@@ -45,10 +45,10 @@ export class AfficherPfeCardsComponent implements OnInit {
         )
       }else if (this.role == 'teacher'){
 
-        this.pfeService.getSoutenancesOfTeacher(+this.idUser).subscribe(
+        this.pfeService.getSujetsOfTeacher(+this.idUser).subscribe(
           (response)=>{
-            this.soutenances = response
-            console.log(this.soutenances)
+            this.sujets = response
+
           },
           (error)=>{
             console.log('error sout teacher')

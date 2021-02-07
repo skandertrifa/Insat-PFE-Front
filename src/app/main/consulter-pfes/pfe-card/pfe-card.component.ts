@@ -8,11 +8,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PfeCardComponent implements OnInit {
 
   constructor() { }
-  @Input('soutenance')
-  soutenance;
+  @Input('sujet')
+  sujet;
 
   ngOnInit(): void {
-    console.log(this.soutenance)
+
   }
 
 
