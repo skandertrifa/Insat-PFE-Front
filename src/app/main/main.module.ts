@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PfeCardComponent } from './consulter-pfes/pfe-card/pfe-card.component';
 
 
@@ -23,6 +24,8 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
     NbMenuModule,
     DashboardModule,
     MiscellaneousModule,
+    FormsModule,
+    ReactiveFormsModule,
     /*CataloguePFEsModule,
     ConsulterPFEsModule,
     DeposerPFEModule,*/
