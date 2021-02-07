@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'pfe-card',
@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class PfeCardComponent implements OnInit {
 
   constructor() { }
+  @Input('soutenance')
+  soutenance;
 
   ngOnInit(): void {
+    console.log(this.soutenance)
   }
+
+
 
 }
