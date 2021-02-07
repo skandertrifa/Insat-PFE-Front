@@ -1,9 +1,10 @@
 import { DeposerPfeService } from './services/deposer-pfe.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { NbToastrService } from '@nebular/theme';
 import { Enseignant } from '../../models/enseignant';
 import { EnseignantService } from '../../services/enseignant.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-deposer-pfe',
@@ -20,8 +21,9 @@ export class DeposerPFEComponent implements OnInit {
   enseignants : Enseignant[] = [];
 
   constructor(
+    private router: Router,
     private sujetService : DeposerPfeService,
-    private toastrService: ToastrService,
+    private toastrService: NbToastrService,
     private enseignantService : EnseignantService,
 
   ) {
@@ -58,11 +60,13 @@ export class DeposerPFEComponent implements OnInit {
     this.sujetService.createSujet(fd).subscribe(
       (response)=>{
         console.log('success')
-        this.toastrService.success('Opération effectué avec succès!');
+      
+        this.router.navigate(['/main/consulter-pfes']);
+      
       },
       (error)=>{
         console.log('fail')
-        this.toastrService.error("Echec de l'ajout de sujet");
+        this.toastrService.show('Echec! envoye impossible',"Erreur",{status : "danger"});
       }
     )
 
@@ -70,5 +74,4 @@ export class DeposerPFEComponent implements OnInit {
   }
 
   
-
 }
