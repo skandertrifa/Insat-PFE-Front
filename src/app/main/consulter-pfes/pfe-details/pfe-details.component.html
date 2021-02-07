@@ -44,9 +44,9 @@
         <nb-card-header > Rapport:   
             <a href=# style="margin-left: 70%;"> <i class="fas fa-file-download"></i> </a>
         </nb-card-header>
-        <nb-card-body>
+        <nb-card-body *ngif="role==user">
            
-          <button nbButton (click)="toggle()" style="margin-left: 60%;">deposer votre rapport</button>
+          <button nbButton (click)="toggle()" style="margin-left: 60%;" >deposer votre rapport</button>
         </nb-card-body>
       </nb-card>
 
@@ -58,8 +58,8 @@
             <nb-card-header >Approbation: </nb-card-header>
             <nb-card-body>
                
-              Ap: vous pouvez telecharger votre lettre d'affectation:
-              <a href=# style="margin-left: 5%;"> <i class="fas fa-file-download"></i> </a>
+              Ap: vous pouvez telecharger la lettre d'affectation:
+              <a href=# style="margin-left: 5%;" > <i class="fas fa-file-download"></i> </a>
 
             </nb-card-body>
           </nb-card>

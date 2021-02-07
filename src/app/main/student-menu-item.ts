@@ -1,37 +1,10 @@
+import { MENU_ITEMS } from './main-menu';
 import { NbMenuService, NbMenuItem } from '@nebular/theme';
 import { AuthService } from '../auth/services/auth.service';
 
- export const MENU_ITEMS: NbMenuItem[] = [
-  {
-    title: 'Catalogue PFEs',
-    icon: 'grid-outline',
-    link: 'catalogue-pfes',
-    home:true
+export class STUDENT_MENU_ITEM {
     
-  },
-  { 
-    title: 'Consulter vos PFEs',
-    icon: 'layout-outline',
-    link: 'consulter-pfes',
-    
-  },
-  {
-    title: 'Deposer votre PFE',
-    icon: 'edit-2-outline',
-    link: 'deposer-pfe',
-    
-  },
-  {
-    title: 'Profile',
-    icon: 'lock-outline',
-    link: 'profile',
-    
-  },
-  
-];
- class STUDENT_MENU_ITEM {
-
-role :string = '';
+    role :string = '';
 
  
 studentMenuItem: NbMenuItem[] = [
