@@ -35,7 +35,7 @@ export class PfeService {
   }
 
   downloadRapport(id):Observable<any> {
-    return this.http.get<any>(SUJET_API+'/downloadRapport' + `/${id}`);
+    return this.http.get<any>(SUJET_API+'/downloadRapport'+`/${id}`);
   }
 
 

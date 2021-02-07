@@ -69,7 +69,6 @@ export class PfeDetailsComponent implements OnInit {
 
 
   handleDownloadRapportPfe(rapportID:number,filename:string){
-    console.log(filename)
     this.pfeService.downloadRapport(rapportID).subscribe(
       (response)=>{
 
