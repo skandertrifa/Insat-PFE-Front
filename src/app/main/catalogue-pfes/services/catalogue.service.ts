@@ -1,67 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Catalogue } from '../models/catalogue';
+
+
+const SOUTENANCE_API = 'http://127.0.0.1:3000/soutenance';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogueService {
+  
+  constructor(private http: HttpClient) { }
+  getData() : Observable<any>{
 
-  constructor() { }
-  getData(){
-    const data=[]
-    for (let i =0;i<35;i++)
-    {
-      data.push({
-        id : 1,
-        titre : "HII test",
-        session : "first session",
-        nomEtudiant : "Mokhtar",
-        prenomEtudiant : "Mami",
-        nomEncadrant : "Riadh",
-        prenomEncadrant : "Robbana",
-        filiere : "GL",
-        sujetTitre : "deeep lea8rning",
-        sujetDescription : "deep learning description s8ira2",
-      })
-    }
-    data.push({
-      id : 2,
-      titre : "HII test2",
-      session : "first session",
-      sujetTitre : "deeep lea8rning 5ouh",
-      sujetDescription : "description s8ira",
-      nomEtudiant : "Attia",
-      prenomEtudiant : "Ahmed",
-      nomEncadrant : "Narjes ",
-      filiere : "GL",
-      prenomEncadrant : "Robbana",
-    })
-    return data
-    /*return [
-      {
-        id : 1,
-        titre : "HII test",
-        session : "first session",
-        nomEtudiant : "Mokhtar",
-        prenomEtudiant : "Mami",
-        nomEncadrant : "Riadh",
-        prenomEncadrant : "Robbana",
-        filiere : "GL",
-        sujetTitre : "deeep lea8rning",
-        sujetDescription : "deep learning description s8ira2",
-      },
-      {
-        id : 2,
-        titre : "HII test2",
-        session : "first session",
-        sujetTitre : "deeep lea8rning 5ouh",
-        sujetDescription : "description s8ira",
-        nomEtudiant : "Attia",
-        prenomEtudiant : "Ahmed",
-        nomEncadrant : "Narjes ",
-        filiere : "GL",
-        prenomEncadrant : "Robbana",
-      }
-
-    ]*/
+    const result=this.http.get(SOUTENANCE_API+'/catalogue');
+    console.log("result catalogue data : ",result)
+    return result
+    
   }
+  
 }
