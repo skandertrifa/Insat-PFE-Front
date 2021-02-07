@@ -1,3 +1,4 @@
+import { AfficherPfeCardsComponent } from './afficher-pfe-cards/afficher-pfe-cards.component';
 import { ConsulterPFEsComponent } from './consulter-pfes.component';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -11,7 +12,7 @@ const routes: Routes = [{
   children:[
   {
     path: '',
-    component: PfeCardComponent,
+    component: AfficherPfeCardsComponent,
   },
 
   {
