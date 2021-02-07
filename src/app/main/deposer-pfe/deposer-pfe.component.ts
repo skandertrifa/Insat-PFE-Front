@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Enseignant } from '../../models/enseignant';
 import { EnseignantService } from '../../services/enseignant.service';
+
 @Component({
   selector: 'ngx-deposer-pfe',
   templateUrl: './deposer-pfe.component.html',
@@ -64,6 +65,10 @@ export class DeposerPFEComponent implements OnInit {
         this.toastrService.error("Echec de l'ajout de sujet");
       }
     )
+
+    
   }
+
+  
 
 }
