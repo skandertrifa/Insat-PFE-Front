@@ -4,7 +4,7 @@
     
    
         <nb-card >
-            <nb-card-header >Nom et Prenom: </nb-card-header>
+            <nb-card-header >Nom et Prenom de l'étudiant </nb-card-header>
             <nb-card-body>
                
              Flen Ben Foulen
@@ -12,23 +12,22 @@
           </nb-card>
   
           <nb-card >
-            <nb-card-header > Filiere: </nb-card-header>
+            <nb-card-header > Filière </nb-card-header>
             <nb-card-body>
                
               GL
             </nb-card-body>
           </nb-card>
           <nb-card>
-            <nb-card-header >Encadrant: </nb-card-header>
+            <nb-card-header >Encadrant</nb-card-header>
             <nb-card-body>
                
-              Approuvé
-            </nb-card-body>
+XXXXX YYYYYY            </nb-card-body>
           </nb-card>
           <nb-accordion multi>
         <nb-accordion-item>
           <nb-accordion-item-header>
-            Description
+            Description du sujet
           </nb-accordion-item-header>
           <nb-accordion-item-body>
             A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
@@ -39,58 +38,86 @@
     </nb-accordion>
         
 
-     
-    <nb-card style="margin-top: 10%;">
-        <nb-card-header > Rapport:    nhotou hna symbole mtaa download yebda gris ken femech sinn yebda active </nb-card-header>
-        <nb-card-body>
-           
-          <button nbButton (click)="toggle()" style="margin-left: 60%;">deposer votre rapport</button>
-        </nb-card-body>
-      </nb-card>
+    <nb-card style="margin-top: 5%;" >
+      <nb-card-header >Approbation par L'administration de l'INSAT </nb-card-header>
+      <nb-card-body>
+         
+        Ap: vous pouvez telecharger la lettre d'affectation:
+        <a href=# style="margin-left: 5%;" > <i class="fas fa-file-download"></i> </a>
 
+      </nb-card-body>
+    </nb-card>
+   
+    <nb-card >
+      <nb-card-header >Date limite de depot de rapport </nb-card-header>
+      <nb-card-body>
+         
+        dd/mm/yy
+      </nb-card-body>
+  </nb-card>
       
   </div>
 
   <div class="accordion-container col-md-12 col-lg-6 col-xxxl-6">
-        <nb-card >
-            <nb-card-header >Approbation: </nb-card-header>
-            <nb-card-body>
-               
-              Ap: vous pouvez telecharger votre lettre d'affectation: nhotou l symbole  ...
-            </nb-card-body>
-          </nb-card>
-         
+       
 
-      <nb-card >
-        <nb-card-header >date limite depot: </nb-card-header>
-        <nb-card-body>
-           
-          dd/mm/yy
-        </nb-card-body>
-    </nb-card>
+     
         <nb-card >
-            <nb-card-header >derniere modification: </nb-card-header>
+            <nb-card-header >Derniere modification effectuée: </nb-card-header>
             <nb-card-body>
                
               dd/mm/yys hh:mm:ss
             </nb-card-body>
 
       </nb-card>
-      <nb-accordion multi>
+
+      <nb-card style="margin-top: 5%;">
+        <nb-card-header > Rapport en PDF 
+        <a href=# style="margin-left: 70%;"> <i class="fas fa-file-download"></i> </a>
+        </nb-card-header>
+        <nb-card-body *ngIf="role=='user'" >
+        
+        <button nbButton  style="margin-left: 55%;" >Déposer votre rapport ici</button>
+        </nb-card-body>
+        </nb-card>
+
+
+      
+
+        <nb-card >
+          <nb-card-header >Date de soutenance </nb-card-header>
+          <nb-card-body>
+             
+            dd/mm/yys hh:mm:ss
+          </nb-card-body>
+        </nb-card>
+
+          <nb-card >
+            <nb-card-header >Salle de soutenance </nb-card-header>
+            <nb-card-body>
+               
+S1B14            </nb-card-body>
+
+      </nb-card>
+    <nb-accordion multi>
 
         <nb-accordion-item>
           <nb-accordion-item-header>
             Membres de la jury
           </nb-accordion-item-header>
           <nb-accordion-item-body>
-            A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-            Originally, nebula was a name for any diffuse astronomical object,
-            including galaxies beyond the Milky Way.
+            President de jury: xxxxx yyyyyy <br>
+            Membre 1: xxxxx yyyyyy <br>
+            Membre 2: xxxxx yyyyyy <br>
+
           </nb-accordion-item-body>
         </nb-accordion-item>
       </nb-accordion>
-      <nb-card style="margin-top: 10%;">
-        <nb-card-header > fiche proposition:    nhotou hna symbole mtaa download yebda gris ken femech sinn yebda active </nb-card-header>
+      <nb-card style="margin-top: 5%;">
+        <nb-card-header > Fiche de proposition de stage
+            <a href=# style="margin-left: 30%;"> <i class="fas fa-file-download"></i> </a>
+
+        </nb-card-header>
        
       </nb-card>
   </div>

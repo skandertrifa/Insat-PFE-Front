@@ -1,6 +1,6 @@
-import { NbMenuItem } from '@nebular/theme';
+import { NbMenuService, NbMenuItem } from '@nebular/theme';
 
-export const MENU_ITEMS: NbMenuItem[] = [
+ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Catalogue PFEs',
     icon: 'grid-outline',
@@ -8,7 +8,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home:true
     
   },
-  {
+  { 
     title: 'Consulter vos PFEs',
     icon: 'layout-outline',
     link: 'consulter-pfes',
