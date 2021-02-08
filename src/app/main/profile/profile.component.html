@@ -6,7 +6,9 @@
             <div class="card">
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                  <div class="rounded-circle border  d-flex justify-content-center flex-column" style="width: 150px; height: 150px; background-color: #efeff1; border-color: #d6d8da;">
+                    <div  class="mx-auto" style="width: 150px; font-size: 50px; font-family: 'Open Sans', 'sans-serif'" >  {{user.nom | slice:0:1 | uppercase }}{{user.prenom | slice:0:1 | uppercase }} </div>
+                  </div>
                   <div class="mt-3">
                     <h4>{{user.nom}} {{user.prenom}}</h4>
                     <p  *ngIf="role==='user'" class="text-secondary mb-1">Etudiant En {{user.studentDetails.filiere}}</p>
@@ -22,17 +24,19 @@
                 <div class="card-body">
                   <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Sujet En cours</i></h6>
 
-                   <h6>Titre: <small>{{user.studentDetails?.sujet?.titre}}</small></h6>
-                   <h6>Date Limite Depot: <small>{{user.studentDetails?.sujet?.dateLimiteDepot | date:'yyyy-mm-dd'}}</small></h6>
+                   <h6>Titre: <small>{{sujet.titre}}</small></h6>
+                   <h6 *ngIf="sujet.dateLimiteDepot">Date Limite Depot: <small>{{sujet.dateLimiteDepot | date:'medium'}}</small></h6>
+                   <h6 *ngIf="!sujet.dateLimiteDepot">Date Limite Depot: <small>Pas Encore Décidé</small></h6>
+
                    <h6>Etat Sujet:
-                      <small *ngIf="user.studentDetails?.sujet?.approved">Approuvé par l'adiminstration</small>
-                      <small *ngIf="!user.studentDetails?.sujet?.approved">En attente de confirmation</small>
+                      <small *ngIf="sujet?.approved">Approuvé par l'adiminstration</small>
+                      <small *ngIf="!sujet?.approved">En attente de confirmation</small>
 
                     </h6>
 
                     <h6>Etat Rapport:
-                      <small *ngIf="user.studentDetails?.sujet?.rapportPfe">Rapport Mis</small>
-                      <small *ngIf="!user.studentDetails?.sujet?.rapportPfe">Rapport Non mis encore</small>
+                      <small *ngIf="sujet?.rapportPfe">Rapport Mis</small>
+                      <small *ngIf="!sujet?.rapportPfe">Rapport Non mis encore</small>
 
                     </h6>
 
@@ -72,7 +76,7 @@
                     <h6 class="mb-0">Full Name</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <span>{{user.nom}} {{user.prenom}} </span>
+                    <span>{{user.nom|titlecase}} {{user.prenom|titlecase}} </span>
                   </div>
                 </div>
                 <hr>
@@ -84,7 +88,7 @@
                     <span >{{user.email}}</span>
                   </div>
                 </div>
-                <hr>
+                <hr *ngIf="role==='user'">
                 <div *ngIf="role==='user'" class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Filiére</h6>
@@ -93,7 +97,7 @@
                     {{user.studentDetails.filiere}}
                   </div>
                 </div>
-                <hr>
+                <hr *ngIf="role==='user'" >
                 <div *ngIf="role==='user'" class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">ID Etudiant</h6>
@@ -108,10 +112,10 @@
                     <h6 class="mb-0">Joined At</h6>
                   </div>
                   <div *ngIf="role==='user'"  class="col-sm-9 text-secondary">
-                    {{user.studentDetails.createdAt | date:'yyyy-mm-dd'}}
+                    {{user.studentDetails.createdAt | date:'medium'}}
                   </div>
                   <div *ngIf="role==='teacher'"  class="col-sm-9 text-secondary">
-                    {{user.teacherDetails.createdAt | date:'yyyy-mm-dd'}}
+                    {{user.teacherDetails.createdAt | date:'medium'}}
                   </div>
                 </div>
               </div>
@@ -176,4 +180,3 @@
         </div>
       </div>
   </div>
-

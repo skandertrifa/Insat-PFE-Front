@@ -19,8 +19,8 @@ export class PfeDetailsComponent implements OnInit {
   ) { }
   private file : File;
   role :string = '';
-  idSoutenance : number;
-  soutenance;
+  idSujet : number;
+  sujet;
   ngOnInit(): void {
     const token = localStorage.getItem('token')
     const payload = this.authService.getDecodedAccessToken(token);
@@ -29,24 +29,29 @@ export class PfeDetailsComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       console.log("params : ",params);
-      this.idSoutenance=+params['id'];
-      console.log(this.idSoutenance)
+      this.idSujet=+params['id'];
+      console.log(this.idSujet)
    });
+   this.getOneSujet(this.idSujet)
 
-   this.pfeService.getOneSoutenance(this.idSoutenance).subscribe(
-     (response)=>{
-       this.soutenance = response;
-       console.log(this.soutenance)
-     },
-     (error)=>{
-       console.log('fail')
-     }
-   )
   }
 
+
+  getOneSujet(id:number){
+    this.pfeService.getOneSujet(id).subscribe(
+      (response)=>{
+        this.sujet = response;
+        console.log(this.sujet)
+      },
+      (error)=>{
+        console.log('fail')
+      }
+    )
+  }
   onFileChange(fileChangeEvent,rapport:NgForm) {
     this.file = fileChangeEvent.target.files[0];
     this.uploadRapport(rapport)
+    this.getOneSujet(this.idSujet)
   }
 
 

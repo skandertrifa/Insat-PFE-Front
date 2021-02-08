@@ -1,4 +1,4 @@
-<h1>{{soutenance.sujet.titre}}</h1>
+<h1>{{sujet.titre}}</h1>
 <div class="accordions-container row">
   <div class="accordion-container col-md-12 col-lg-6 col-xxxl-6">
 
@@ -7,7 +7,7 @@
             <nb-card-header >Nom et Prenom de l'étudiant </nb-card-header>
             <nb-card-body>
 
-             {{soutenance.sujet.etudiant.userDetails.nom}} {{soutenance.sujet.etudiant.userDetails.prenom}}
+             {{sujet.etudiant.userDetails.nom | titlecase}} {{sujet.etudiant.userDetails.prenom | titlecase}}
             </nb-card-body>
           </nb-card>
 
@@ -15,14 +15,14 @@
             <nb-card-header > Filière </nb-card-header>
             <nb-card-body>
 
-              {{soutenance.sujet.etudiant.filiere}}
+              {{sujet.etudiant.filiere}}
             </nb-card-body>
           </nb-card>
           <nb-card>
             <nb-card-header >Encadrant</nb-card-header>
             <nb-card-body>
 
-              {{soutenance.sujet.encadrant.userDetails.nom}} {{soutenance.sujet.encadrant.userDetails.prenom}}
+              {{sujet.encadrant.userDetails.nom|titlecase}} {{sujet.encadrant.userDetails.prenom|titlecase}}
 
             </nb-card-body>
           </nb-card>
@@ -32,7 +32,7 @@
             Description du sujet
           </nb-accordion-item-header>
           <nb-accordion-item-body>
-            {{soutenance.sujet.description}}
+            {{sujet.description}}
           </nb-accordion-item-body>
         </nb-accordion-item>
     </nb-accordion>
@@ -41,19 +41,19 @@
       <nb-card-header >Approbation par L'administration de l'INSAT </nb-card-header>
       <nb-card-body>
 
-        <div *ngIf="!soutenance.sujet.lettreAffirmation">
+        <div *ngIf="!sujet.lettreAffectationPfe">
           En attente d'approbation
 
         </div>
 
 
-        <div *ngIf="soutenance.sujet.lettreAffirmation">
+        <div *ngIf="sujet.lettreAffectationPfePfe">
           Ap: vous pouvez telecharger la lettre d'affectation:
         <button (click)="handleDownloadLettreAffirmation(
-            +soutenance.sujet.lettreAffirmation.id,
+            +sujet.lettreAffectationPfe.id,
             'LettreAffirmation_'+
-            soutenance.sujet.etudiant.userDetails.nom+'_'+
-            soutenance.sujet.etudiant.userDetails.prenom+
+            sujet.etudiant.userDetails.nom+'_'+
+            sujet.etudiant.userDetails.prenom+
             '.pdf')" >
             <i class="fa fa-download" aria-hidden="true"></i>
           </button>
@@ -66,8 +66,8 @@
       <nb-card-header >Date limite de depot de rapport </nb-card-header>
       <nb-card-body>
 
-        <span *ngIf="soutenance.sujet.dateLimiteDepot">{{soutenance.sujet.dateLimiteDepot | date:'yyyy-mm-dd'}}</span>
-        <span *ngIf="!soutenance.sujet.dateLimiteDepot">En attente de l'administration</span>
+        <span *ngIf="sujet.dateLimiteDepot">{{sujet.dateLimiteDepot | date:'medium'}}</span>
+        <span *ngIf="!sujet.dateLimiteDepot">En attente de l'administration</span>
 
       </nb-card-body>
   </nb-card>
@@ -82,24 +82,28 @@
             <nb-card-header >Derniere modification effectuée: </nb-card-header>
             <nb-card-body>
 
-              {{soutenance.updatedAt | date:'yyyy-mm-dd'}}
+              {{sujet.updatedAt | date:'medium'}}
             </nb-card-body>
 
       </nb-card>
 
       <nb-card style="margin-top: 5%;">
-        <nb-card-header > Rapport en PDF
+        <nb-card-header > Rapport en PDF</nb-card-header>
 
-          <button (click)="handleDownloadRapportPfe(
-            +soutenance.sujet.rapportPfe.id,
+
+        <nb-card-body >
+          <button *ngIf="sujet.rapportPfe" (click)="handleDownloadRapportPfe(
+            +sujet.rapportPfe.id,
             'RapportPfe_'+
-            soutenance.sujet.etudiant.userDetails.nom+'_'+
-            soutenance.sujet.etudiant.userDetails.prenom+
+            sujet.etudiant.userDetails.nom+'_'+
+            sujet.etudiant.userDetails.prenom+
             '.pdf')" >
             <i class="fa fa-download" aria-hidden="true"></i>
           </button>
+          <span *ngIf="!sujet.rapportPfe">Pas Encore</span>
+        </nb-card-body>
 
-        </nb-card-header>
+
         <nb-card-body *ngIf="role=='user'" >
         <!-- <button nbButton  style="margin-left: 55%;" >Déposer votre rapport ici</button> -->
         <form #uploadRapport="ngForm">
@@ -124,7 +128,7 @@
           <nb-card-header >Date de soutenance </nb-card-header>
           <nb-card-body>
 
-            {{soutenance.dateDePassage | date:'yyyy-mm-dd'}}
+            {{sujet.soutenance?.dateDePassage | date:'medium'}}
           </nb-card-body>
         </nb-card>
 
@@ -132,7 +136,7 @@
             <nb-card-header >Salle de soutenance </nb-card-header>
             <nb-card-body>
 
-              {{soutenance.salle.code}}
+              {{sujet.soutenance?.salle.code}}
           </nb-card-body>
 
       </nb-card>
@@ -143,9 +147,9 @@
             Membres de la jury
           </nb-accordion-item-header>
           <nb-accordion-item-body>
-            President de jury: {{soutenance.jury.president.userDetails.nom}} {{soutenance.jury.president.userDetails.prenom}} <br><br>
-            Membre 1: {{soutenance.jury.members[0].userDetails.nom}} {{soutenance.jury.members[0].userDetails.prenom}} <br><br>
-            Membre 2: {{soutenance.jury.members[1].userDetails.nom}} {{soutenance.jury.members[1].userDetails.prenom}}  <br><br>
+            President de jury: {{sujet.soutenance?.jury.president.userDetails.nom|titlecase}} {{sujet.soutenance?.jury.president.userDetails.prenom|titlecase}} <br><br>
+            Membre 1: {{sujet.soutenance?.jury.members[0].userDetails.nom|titlecase}} {{sujet.soutenance?.jury.members[0].userDetails.prenom|titlecase}} <br><br>
+            Membre 2: {{sujet.soutenance?.jury.members[1].userDetails.nom|titlecase}} {{sujet.soutenance?.jury.members[1].userDetails.prenom|titlecase}}  <br><br>
 
           </nb-accordion-item-body>
         </nb-accordion-item>
@@ -154,10 +158,10 @@
         <nb-card-header > Fiche de proposition de stage
 
           <button (click)="handleDownloadFicheProposition(
-              +soutenance.sujet.lettreAffirmation.id,
+              +sujet.fichePropositionPfe.id,
               'FicheProposition_'+
-              soutenance.sujet.etudiant.userDetails.nom+'_'+
-              soutenance.sujet.etudiant.userDetails.prenom+
+              sujet.etudiant.userDetails.nom+'_'+
+              sujet.etudiant.userDetails.prenom+
               '.pdf')" >
               <i class="fa fa-download" aria-hidden="true"></i>
             </button>
