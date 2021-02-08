@@ -47,7 +47,8 @@ export class DeposerPFEComponent implements OnInit {
   loadSujet(id){
     this.sujetService.getSujet(id).subscribe(
       (response) => {
-        console.log("sujet hi : ",response)
+        //console.log("sujet hi : ",response)
+        response=response[0]
         if(typeof response.titre !==null && typeof response.titre !==undefined)
           this.titre = response.titre;
         if(typeof response.description !==null && typeof response.description !==undefined)

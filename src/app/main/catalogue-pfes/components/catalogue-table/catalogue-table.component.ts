@@ -24,9 +24,14 @@ export class CatalogueTableComponent {
       cancelButtonContent: '<i class="nb-close"></i>',
     },
     columns: {
-      titre: {
-        title: 'Titre',
+      titreSujet: {
+        title: 'Titre du Sujet',
         type: 'string',
+      },
+      descriptionSujet: {
+        title: 'Description du Sujet',
+        type: 'custom',
+        renderComponent: SujetCellComponent,
       },
       etudiant: {
         title: 'Etudiant',
@@ -40,15 +45,8 @@ export class CatalogueTableComponent {
         title: 'Session',
         type: 'string',
       },
-      titreSujet: {
-        title: 'Titre du Sujet',
-        type: 'string',
-      },
-      descriptionSujet: {
-        title: 'Description du Sujet',
-        type: 'custom',
-        renderComponent: SujetCellComponent,
-      },
+      
+      
       filiere: {
         title: 'Filiere',
         type: 'string',

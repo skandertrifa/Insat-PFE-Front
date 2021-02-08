@@ -21,7 +21,7 @@ public createSujet(formData) {
 }
 
 public getSujet(id){
-  return this.httpClient.get<any>(`${SUJET_API}/findStudent/${id}`);
+  return this.httpClient.get<any>(`${SUJET_API}/student/${id}`);
 }
 
 
