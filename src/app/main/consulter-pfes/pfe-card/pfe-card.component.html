@@ -2,23 +2,23 @@
   <div class="meta">
     <ul class="details">
       <li style="margin-top: 5%;">Nom:
-        {{sujet.nomEtudiant}}
+        {{sujet.etudiant.userDetails.nom| titlecase}}
         <br>
     </li>
     <li style="margin-top: 5%;">Prenom:
-      {{sujet.prenomEtudiant}}
+      {{sujet.etudiant.userDetails.prenom | titlecase}}
       <br>
     </li>
       <li  style="margin-top: 5%;">Filiere :
-        {{sujet.filiereEtudiant}}<br>
+        {{sujet.etudiant.filiere}}<br>
          </li>
-      <div *ngIf="sujet.SujetdateLimiteDepo">
+      <div *ngIf="sujet.dateLimiteDepot">
         <li  style="margin-top: 5%;">Date limite:
-          {{sujet.SujetdateLimiteDepot | date:'yyyy-mm-dd'}}
+          {{sujet.dateLimiteDepot | date:'medium'}}
           <br>
         </li>
       </div>
-      <div *ngIf="!sujet.SujetdateLimiteDepo">
+      <div *ngIf="!sujet.dateLimiteDepot">
         <li  style="margin-top: 5%;">Date limite:
           Pas Encore Mis
           <br>
@@ -29,10 +29,10 @@
     </ul>
   </div>
   <div class="description">
-    <h1>{{sujet.titreSujet}}</h1>
-    <p>{{sujet.sujetDescription}}</p>
+    <h1>{{sujet.titre}}</h1>
+    <p>{{sujet.description}}</p>
     <p class="read-more">
-      <a routerLink="details/{{sujet.idSoutenance}}" >Details de pfe</a>
+      <a routerLink="details/{{sujet.id}}" >Details de pfe</a>
     </p>
   </div>
 </div>

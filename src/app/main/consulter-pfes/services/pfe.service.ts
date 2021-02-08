@@ -22,9 +22,11 @@ export class PfeService {
   getSujetOfStudent(idUser:number): Observable<any> {
     return this.http.get<any>(SUJET_API+`/student/${idUser}`);
   }
-  getOneSoutenance(id:number): Observable<any>{
-    return this.http.get<any>(SOUTENANCE_API+`/${id}`);
+
+  getOneSujet(id:number): Observable<any>{
+    return this.http.get<any>(SUJET_API+`/sujet/${id}`);
   }
+
   getSujetsOfTeacher(idUser:number): Observable<any> {
     return this.http.get<any>(SUJET_API+`/teacher/${idUser}`);
   }
