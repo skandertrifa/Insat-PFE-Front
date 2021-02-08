@@ -1,7 +1,7 @@
 export class Catalogue{
     id : number
     titre : string
-    name : string
+    nom : string
     sujetTitre : string
     sujetDescription : string
     nomEtudiant : string
@@ -9,4 +9,5 @@ export class Catalogue{
     filiere : string
     nomEncadrant : string
     prenomEncadrant : string
+    idRapport : number
 }
