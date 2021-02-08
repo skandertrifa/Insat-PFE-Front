@@ -1,18 +1,30 @@
 <div class="blog-card">
   <div class="meta">
     <ul class="details">
-      <li class="author">Nom et prenom:
-        {{sujet.nomEtudiant}} {{sujet.prenomEtudiant}}
+      <li style="margin-top: 5%;">Nom:
+        {{sujet.nomEtudiant}}
         <br>
     </li>
-      <li class="author"style="margin-top: 5%;">Filiere :
+    <li style="margin-top: 5%;">Prenom:
+      {{sujet.prenomEtudiant}}
+      <br>
+    </li>
+      <li  style="margin-top: 5%;">Filiere :
         {{sujet.filiereEtudiant}}<br>
          </li>
-      <li class="author" style="margin-top: 5%;">Date limite:
-        {{sujet.SujetdateLimiteDepot | date:'yyyy-mm-dd'}}
-        <br>
+      <div *ngIf="sujet.SujetdateLimiteDepo">
+        <li  style="margin-top: 5%;">Date limite:
+          {{sujet.SujetdateLimiteDepot | date:'yyyy-mm-dd'}}
+          <br>
+        </li>
+      </div>
+      <div *ngIf="!sujet.SujetdateLimiteDepo">
+        <li  style="margin-top: 5%;">Date limite:
+          Pas Encore Mis
+          <br>
+        </li>
+      </div>
 
-      </li>
 
     </ul>
   </div>
@@ -20,7 +32,7 @@
     <h1>{{sujet.titreSujet}}</h1>
     <p>{{sujet.sujetDescription}}</p>
     <p class="read-more">
-      <a routerLink="details/{{sujet.idSoutenance}}" > Details de pfe</a>
+      <a routerLink="details/{{sujet.idSoutenance}}" >Details de pfe</a>
     </p>
   </div>
 </div>
