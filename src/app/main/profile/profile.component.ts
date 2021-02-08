@@ -1,7 +1,8 @@
 import { Enseignant } from './../../models/enseignant';
 import { AuthService } from './../../services/auth.service';
 import { Student } from './../../models/student';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'ngx-profile',
@@ -22,6 +23,9 @@ export class ProfileComponent implements OnInit {
     console.log(payload)
     this.role = payload.role
     this.user = payload
+  
   }
+
+  
 
 }

@@ -6,7 +6,9 @@
             <div class="card">
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                  <div class="rounded-circle border  d-flex justify-content-center flex-column" style="width: 150px; height: 150px; background-color: #efeff1; border-color: #d6d8da;">
+                    <div  class="mx-auto" style="width: 150px; font-size: 50px; font-family: 'Open Sans', 'sans-serif'" >  {{user.nom | slice:0:1 | uppercase }}{{user.prenom | slice:0:1 | uppercase }} </div>
+                  </div>
                   <div class="mt-3">
                     <h4>{{user.nom}} {{user.prenom}}</h4>
                     <p  *ngIf="role==='user'" class="text-secondary mb-1">Etudiant En {{user.studentDetails.filiere}}</p>
@@ -176,4 +178,3 @@
         </div>
       </div>
   </div>
-
