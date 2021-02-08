@@ -1,3 +1,7 @@
-<div class="text-center">
-    <a [routerLink]= "[value]"> <i class="fas fa-file-download"></i> </a>
+<div class="text-center" *ngIf="rowData.rapportId !== undefined && rowData.rapportId !== null">
+    <button (click)="handleDownloadRapportPfe(
+        +rowData.rapportId,
+        'RapportPfe_'+
+        rowData.etudiant+
+        '.pdf')"> <i class="fas fa-file-download"></i> </button>
     </div>

@@ -20,6 +20,10 @@ public createSujet(formData) {
     return this.httpClient.post<any>(SUJET_API, formData);
 }
 
+public getSujet(id){
+  return this.httpClient.get<any>(`${SUJET_API}/findStudent/${id}`);
+}
+
 
 }
 

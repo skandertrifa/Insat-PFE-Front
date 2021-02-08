@@ -36,15 +36,15 @@ export class CatalogueTableComponent {
         title: 'Encadrant',
         type: 'string',
       },
-      session: {
+      nomSession: {
         title: 'Session',
         type: 'string',
       },
-      sujetTitre: {
+      titreSujet: {
         title: 'Titre du Sujet',
         type: 'string',
       },
-      sujetDescription: {
+      descriptionSujet: {
         title: 'Description du Sujet',
         type: 'custom',
         renderComponent: SujetCellComponent,
@@ -53,7 +53,7 @@ export class CatalogueTableComponent {
         title: 'Filiere',
         type: 'string',
       },
-      id: {
+      idRapport: {
         title: 'Rapport',
         type: 'custom',
         renderComponent: RapportCellComponent,
@@ -67,13 +67,33 @@ export class CatalogueTableComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  processData(data : Catalogue[]){
+  processData(data) {
+    const result =[]
     for (let row of data){
-      row["etudiant"]=`${row["nomEtudiant"]} ${row["prenomEtudiant"]}`
-      row["encadrant"]=`${row["nomEncadrant"]} ${row["prenomEncadrant"]}`
+      const resultRow ={
+        "etudiant" : null,
+        "encadrant" : null,
+        "titre" : null,
+        "nomSession" : null, 
+        "titreSujet" : null, 
+        "descriptionSujet" : null, 
+        "filiere" : null,  
+        "idRapport" : null, 
+      }
+      resultRow["etudiant"]=`${row.sujet?.etudiant?.userDetails?.nom} ${row.sujet?.etudiant?.userDetails?.prenom}`
+      resultRow["encadrant"]=`${row.sujet?.encadrant?.userDetails?.nom} ${row.sujet?.encadrant?.userDetails?.prenom}`
+      resultRow["titre"] = row.titre 
+      resultRow["nomSession"] = row.session?.name
+      resultRow["titreSujet"] = row.sujet?.titre 
+      resultRow["descriptionSujet"] = row.sujet?.description 
+      resultRow["filiere"] = row.sujet.etudiant.filiere 
+      resultRow["idRapport"] = row.sujet?.rapportPfe?.id 
+      result.push(resultRow)
+
     }
-    console.log("last form data : ",data)
-    return data
+    
+    console.log("preprocess result : ",result)
+    return result
 
   }
   loadCatalogue(){
