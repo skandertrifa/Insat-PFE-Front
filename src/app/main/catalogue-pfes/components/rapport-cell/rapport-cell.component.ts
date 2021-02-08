@@ -14,7 +14,7 @@ export class RapportCellComponent implements OnInit {
   constructor(private pfeService : PfeService) { }
 
   ngOnInit(): void {
-    console.log("rapport value : ", this.rowData.rapportId)
+    console.log("rapport value : ", this.rowData.idRapport)
   }
   handleDownloadRapportPfe(rapportID:number,filename:string){
     this.pfeService.downloadRapport(rapportID).subscribe(

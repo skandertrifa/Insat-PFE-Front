@@ -1,6 +1,6 @@
-<div class="text-center" *ngIf="rowData.rapportId !== undefined && rowData.rapportId !== null">
+<div class="text-center" *ngIf="rowData.idRapport !== undefined && rowData.idRapport !== null">
     <button (click)="handleDownloadRapportPfe(
-        +rowData.rapportId,
+        +rowData.idRapport,
         'RapportPfe_'+
         rowData.etudiant+
         '.pdf')"> <i class="fas fa-file-download"></i> </button>
